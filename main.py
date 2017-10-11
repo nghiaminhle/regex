@@ -35,6 +35,7 @@ def main():
         ['a', 'a', True],
         ['a', 'b', False],
         ['c', '.', True],
+        ['df', '*', True],
         ['abcd', 'a.c', False],
         ['abcabfxyza', '*ab*klm', False],
         ['abcabf', '*abf', True],
