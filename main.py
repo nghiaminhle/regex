@@ -27,9 +27,7 @@ def match(s, prefix_str, p_index, pattern):
             s_index += 1
         return match(s, new_prefix, p_index + 1, pattern)
     else:
-        if s == prefix_str:
-            return False
-        if s[len(prefix_str)] != pattern[p_index]:
+        if s == prefix_str or s[len(prefix_str)] != pattern[p_index]:
             return False
         return match(s, prefix_str + s[len(prefix_str)], p_index + 1, pattern)
 
