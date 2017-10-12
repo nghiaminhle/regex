@@ -8,11 +8,10 @@ def match(s, prefix_str, p_index, pattern):
             return True
         else:
             return False
-    if len(prefix_str) > len(s) or p_index == len(pattern):
+    if p_index == len(pattern):
         return False
     if pattern[p_index] == '.':
-        new_prefix = prefix_str + s[len(prefix_str)]
-        return match(s, new_prefix, p_index + 1, pattern)
+        return match(s, prefix_str + s[len(prefix_str)], p_index + 1, pattern)
     elif pattern[p_index] == '*':
         new_prefix = prefix_str
         s_index = len(prefix_str)
@@ -27,8 +26,7 @@ def match(s, prefix_str, p_index, pattern):
     else:
         if s[len(prefix_str)] != pattern[p_index]:
             return False
-        new_prefix = prefix_str + s[len(prefix_str)]
-        return match(s, new_prefix, p_index + 1, pattern)
+        return match(s, prefix_str + s[len(prefix_str)], p_index + 1, pattern)
 
 def main():
     testcases = [
@@ -42,7 +40,9 @@ def main():
         ['abccccc', '*ccc', True],
         ['abc', 'c*', False],
         ['abc', '*d', False],
-        ['abcd', 'a*d', True]
+        ['abcd', 'a*d', True],
+        ['abcd', 'a***d', True],
+        ['abcd', '*', True]
         #['', '*', True],
         #['abc', '*c*', True],
         #['bedc', '*b*c', True],
@@ -51,11 +51,11 @@ def main():
         #['', '*.', False]
     ]
 
-    for case in testcases:
-        print('Executing test case %s %s %s' % (case[0], case[1], case[2]))
-        assert regex_matcher(case[0], case[1]) == case[2]
+    #for case in testcases:
+    #    print('Executing test case %s %s %s' % (case[0], case[1], case[2]))
+    #    assert regex_matcher(case[0], case[1]) == case[2]
     
-    #print(regex_matcher('abcd', 'a.c*.'))
+    print(regex_matcher('abcd', 'a**d'))
 
 
 if __name__ == "__main__":
