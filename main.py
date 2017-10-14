@@ -67,7 +67,7 @@ def test_per():
     pattern = 'a'
     for i in range(99):
         pattern +='*'
-    pattern += 'd'
+    pattern += 'f'
     print(regex_matcher('abcd', pattern))
 
 if __name__ == "__main__":
